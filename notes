@@ -1,0 +1,94 @@
+WHAT IS SCSS
+-stands for syntactically Awesome Style Sheet is the superset of CSS. SCSS is the more advanced version of CSS
+-it has the file extension of .scss
+- you can use SCSS offers variables
+-it helps us write better code.
+- one of the most important parts of SCSS is nesting, which allows us to write CSS in a similar way to HTML. Instead
+of writing a series of selectors every time you're writing a new style, you can create outer class, then pull all
+other relevant selectors inside of it.
+
+THE DIFFERENCE BETWEEN SASS AND SCSS:
+-Sass supports two different syntaxes. Each one cal load the other, so it's up to you to decide which one to use
+- the SCSS syntax uses the file extension .scss. with a few small exceptions, we can use all valid CSS and valid
+SCSS as well. so in our project this is the syntax that we are using
+- there is also the indented syntax and that can be noted by the file extension .sass we will not be using this.
+
+- so to use sass we have to install node sass
+partials:
+we can create partial sass files that contain little snippets of css that you can include in other sass files.
+THis is a create way to modularize the css. a partial is a Sass file named with a leading underscore. the
+underscore lets Sass know that the file is only a partial file and that it should not be generated into CSS file
+Sass partials are used with the @use rule.
+
+modules:
+-we don't have to keep all the SASS in a sinlge file. we can split up however we want with the @use rule. This
+rule loads another SAss file as a module, which means we can refer to its varibles, mixins, and functions with a
+names space based on the filename.
+
+
+
+CREATING THE NAVIGAITON BAR:
+- we just create a normal navigation and we are going to set states using react hooks and these state will be
+used to toggle classes in the scss.
+
+-in the base scss file we are using the @import and we are importing the toolbar.scss, this will allow us
+access to all of its mixins, funcitons and varibles and combining multiple sheets together. actually the
+documentation says to use the @use instead of the @import, they seem the same but for right now, lets just use
+@import.
+
+-in our SCSS file we are using the indented code style, this lets us better organize our code.
+
+HOVERING OVER THE LINKS SO AND HAVE THEM CHANGE COLOR:
+
+-we want to make it so that when we hover, it will change the particular hover index of the li and then change
+the color of that link and this will be created through the vanilla js functions onMouseEnter and onMouseLeave
+- ok so we add a event on the li call onMouseEnter and we setHoverIndex(index) and index is given to us by the
+map method because it. The index is the index of the current element being processed in the array.
+- then we add another javascript event listener called onMouseLeave and we call setHoverIndex(-1), this is
+what will change the color back to normal
+- so to reiterate we created the normal navBar component, the interesting thing is that we do not set out the links
+in html manually we set them out in the App component.
+- inside the app component we create an object literal called nav links and have an array of objects inside of
+navLinks, then we pass that as a prop to the NavBar component. This is cool because it makes things more dynamic.
+
+- then in the navBar component we create the jsx of a NavBar, we create a ul element and then inside of that we
+map over the props.navLinks with the map method. so for every object in the navLinks array we create a li item
+and inside of that li element we create a Link component from react-router-dom, this will let the li link to
+somewhere and then to get the words to display in the li we do {link.text}
+- so to create the NavBar more dynamically we create an object literal in App component and then passed it as props
+to the NavBar component. we then use .map() to loop over and display the proper li elements.
+
+- then we styled it accordingly inside of the toolbar.scss and we used the nesting method to do so.
+- then we create two states by using the useState Hook. The first one is hoverIndex and that will be used to change
+the color on li elements when we hoverOver them. we initialy have the state set to -1
+- to use that state we have added two events on the li element, the first event is called onMouseEnter and the
+second one is called onMouseLeave. It is important to remember that the li element is inside of the map method
+because that is where it is going to get the index value from.
+-so onMouseEnter={()=>setHoverIndex(index)} that will set the value of hoverIndex to what ever the index of the
+current item in the map method is. then onMouseLeave={()=>setHoverIndex(-1)}, this sets it back to its original
+state. Once we get everything set up, this will allow for the color change to go back to normal.
+- we are using an inline style to create the hover over effect  in it we are saying, if the hoverIndex is equal
+to the index then set the background to the #999 if it is not then set the background to whatever it was before
+- the hoverIndex will be equal to the index if when we hover over that particular item. so the color should
+change when we hover over it.
+- so that is really cool that it works, when we are going to create a hover effect we should try to remember to use the
+inline style with the state and map functions to amke the hover effect work
+
+- when we want to create a hover effect on a list in React think onMouseEnter and onMouseLeave to change the states
+and inline style component that accepts a single object to create the hover effect.
+- on the navbar we set the position to fixed
+
+THE MOBILE PART OF THE NAVBAR:
+- so the first thing that we do is to create to hamburger, we dont actually create it, we just set it to a font
+awesome icon of a hamburger. we wrap the icon in a figure tag, this makes things more semantic. then on the figure
+object we are going to add a onClick method, onClick(()=>setNavOpen(!navOpen)), the original value is false so when
+we click for the first time we set it to true and on the second time we set it back to false and that continues.
+- we add an active className on the ul className={navOpen?'active':''}, this means that if the navOpen button is set
+to true then the className becomes active but if navOpen is false then the className is set to nothing.
+
+- when we are in the smaller mobile design we want to have the positionset to a negative number so that it gets positioned
+outside of the view of the page. in this case we set it to negative 260px, this is done by setting the left attribute
+left:-240px
+- so the styling is pretty complex and needs to be done little by little inorder to get it right.
+
+THE SLIDING OPEN PART
