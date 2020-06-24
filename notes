@@ -91,4 +91,83 @@ outside of the view of the page. in this case we set it to negative 260px, this 
 left:-240px
 - so the styling is pretty complex and needs to be done little by little inorder to get it right.
 
-THE SLIDING OPEN PART
+THE SLIDING OPEN PART:
+- we add a transition to the ul class in the media query:transition:300ms ease all
+- we then have to create the active class that we are adding and removing to the ul every time we click the button
+- so the active class is just going to override the existing style to make it slide out we do that by setting
+left on the active class to 0;
+- basically all it was doing was just adding a transition to the to the css change. so we just added that to the class
+
+
+RECREATING THE NAVBAR:
+-so the first thing I want to do is create a navBar component. this is already done, make it a functional one. And we give
+it a className
+2) then we want to add the basic styles so that it gives a large grey block across the screen. to make sass work, I added
+the node sass npm I think this does the sass compiling its self and means we do not have to.
+- we create the asset folder and create the nested scss folder inside of that one. For some Reason we are creating
+a navBar.scss and then importing it into the base.scss. actually we then import the base.scss file into the index.js
+file, this is the way that our styles get implemented, so we have everything on one file, makes sense now.
+- I am un sure about how to use the sass
+
+2) import React-Router-DOM and get that set up with the Browser Router and then have get the switch and Route
+set up so that we can create a single page applicaiton.
+
+3) create the list of objects  that will be given to the navBar and mapped over.
+
+4) create the state in the NavBar component with the useState hook we are going to need to states, one will be the
+state for the hovering effect and the other will be a toggle state for the when we press the button for the sideways
+navbar. the NavIndex state will initially be set to -1 and the toggle state will initialy be set to false
+
+5) start building out the HTML, so we know that it is going to be a ui with li elements inside of it. so we create
+the ul and then to create all of the li that we need I think that we loop over it. the li has to contain a
+a tag, since we are using react-dom-router. that will come from the Link component.
+- we want a dynamic class on the nav element so that we can easily set the background color. a dynamic class is
+when we kept track of the state to change the class name and we will use a inline style.
+
+6) how we start actually styling. the ul and the nav tags both get an inline style called background. then on the
+ul we set the height to 100% and then align items to center, we have to set the height to 100% or else it will not work.
+the height 100% actually gives it space to work. instead minimum space that it needs. then we want to take the default
+styles away from the li tags. So we style the ul by putting the the position to fixed, this will make the style stay
+when we scroll and then we we set the height to 100% to get the will width of the screen and then we put the width to
+300px, this will give us the little out crop and we set the flex-direction to row to make everything go vertical
+instead of horizontal
+
+7) add the icons, all we did was add the font awesome class name to the navLinks array of objects and then when
+we mapped over it we and then displayed it in a i tag. Now we have to style them. first we just want to add some space
+to them. the icons are on the wrong side of the li, so to fix this we go inside of the a tag, set display to flex and
+then flex-direction to row-revers and that flips them to the other side. then we made the icons bigger and set the
+font-size to 20px but this messed up the alignment of stuff but to fix that we just set, align-items to center;
+
+8) the changing color on Hover. First we will have to add two javascript events on the li items, the onMouseEnter and the
+onMouseLeave. onMouseEnter we want to set the hoverIndex set to the index on the map function. and then onMouseLeave we
+want to set the hoverIndex back to -1. Then we want to set a dynamic style to change the color based on the hover index
+value. I have the className beign added but I do not have the background being changed. we were able to do this with
+setting the className dynamically but the tutorial does this through an inline style. the inline style was actually
+a lot easier, all we had to do was just go:
+
+                  style={{background: hoverIndex === index? (backHover || '#333') : ''}}
+
+- all this is saying is that if the hoverIndex is equal to the index then we should set the background to backHover
+or  if there is not backHover we set it to '#333'. If the values are not the same, then we set the background to
+an empty string.
+
+
+9) CREATING THE MOBILE VIEW: first thing that we have to do is to create the media query lets create on for 750
+
+        @media only screen and (max-width: 750px){}
+
+- this media query is saying that all of the stuff that is inside that block is going to apply only when the
+screen is smaller than 750px. I am just not sure what to do on the styles.
+- we add a figure tag with a hamburger icon inside of it. we add an onClick event handler to it and toggle the
+value of navOpen.
+- the value of the navOpen will allow us to have a value on the ul tag that will tell the nav to open.
+- the nav bar its self is staying the same but the ul is the one that is being styled
+- so we are left with 2 problems, one begin that the li is too small and the icons are on the wrong side. to fix
+the li problem we are going to se the width to 100% and the padding left and rigt to none. I think we should always
+try to make the inner items always fill the width of their contianer,this makes it so that we have more space to play
+with.
+- to make the icons switch we go inside of the a tag and set the flex-direction to row
+
+- the last thing that we have to do is the transition. so to start we se the margin left to -230px so that it looks like
+its closed.
+- to create the transition on the ul we add a transition of 300ms ease all;

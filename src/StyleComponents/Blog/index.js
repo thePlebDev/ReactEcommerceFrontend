@@ -6,7 +6,7 @@ const Blog = ()=>{
 
   return(
     <div>
-      Blog
+      <h1>BLOG</h1>
     </div>
   )
 }

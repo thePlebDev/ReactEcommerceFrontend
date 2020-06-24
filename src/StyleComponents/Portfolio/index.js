@@ -6,7 +6,7 @@ const Portfolio = ()=>{
 
   return(
     <div>
-      Portfolio
+      <h1>PORTFOLIO</h1>
     </div>
   )
 }

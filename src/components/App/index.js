@@ -6,35 +6,45 @@ import About from '../../StyleComponents/About';
 import Blog from '../../StyleComponents/Blog';
 import Contact from '../../StyleComponents/Contact';
 import Portfolio from '../../StyleComponents/Portfolio';
+import Home from '../../StyleComponents/Home';
 
 const App = ()=>{
-  const navLinks=[
+  const navLinks = [
     {
-      text: 'Home',
-      path:'/'
+      path:'/',
+      text:'Home',
+      icon:"fas fa-home"
     },
     {
-      text: 'About',
-      path:'/about'
+      path:'/blog',
+      text:'Blog',
+      icon:'fas fa-blog'
     },
     {
-      text: 'Blog',
-      path:'/blog'
+      path:'/contact',
+      text:'Contact',
+      icon:'far fa-address-book'
     },
     {
-      text: 'Contact',
-      path:'/contact'
+      path:'/portfolio',
+      text:'Portfolio',
+      icon:"fas fa-portrait"
     },
     {
-      text: 'Portfolio',
-      path:'/portfolio'
+      path:'/about',
+      text:'About',
+      icon:"fas fa-address-card"
     },
   ]
 
+
   return(
     <div>
-      <NavBar navLinks={navLinks} />
+      <NavBar navLinks={navLinks}/>
       <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
         <Route path='/about'>
           <About />
         </Route>
