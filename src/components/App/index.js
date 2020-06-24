@@ -41,23 +41,25 @@ const App = ()=>{
   return(
     <div>
       <NavBar navLinks={navLinks}/>
-      <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route path='/about'>
-          <About />
-        </Route>
-        <Route path='/contact'>
-          <Contact />
-        </Route>
-        <Route path='/blog'>
-          <Blog />
-        </Route>
-        <Route path='/portfolio'>
-          <Portfolio />
-        </Route>
-      </Switch>
+      <div className="main-app-container">
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route path='/about'>
+              <About />
+            </Route>
+            <Route path='/contact'>
+              <Contact />
+            </Route>
+            <Route path='/blog'>
+              <Blog />
+            </Route>
+            <Route path='/portfolio'>
+              <Portfolio />
+            </Route>
+          </Switch>
+      </div>
 
     </div>
   )
