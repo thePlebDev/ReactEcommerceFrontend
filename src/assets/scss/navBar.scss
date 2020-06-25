@@ -19,6 +19,7 @@ nav.responsive-toolbar{
       align-items: center;
       margin-left: 30px;
       cursor: pointer;
+      display: none;
 
     }
   }
@@ -40,6 +41,7 @@ nav.responsive-toolbar{
     i{
       margin-right: 5px;
       font-size: 20px;
+
     }
   }
 }
@@ -50,9 +52,10 @@ nav.responsive-toolbar{
   padding: 0;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 768px){
     nav.responsive-toolbar{
       ul{
+        z-index: 10;
         height: 100%;
         width: 300px;
         position: fixed;
@@ -70,6 +73,7 @@ nav.responsive-toolbar{
           position: fixed;
           left: -10px;
           top: 10px;
+          display: inline;
         }
 
         li{

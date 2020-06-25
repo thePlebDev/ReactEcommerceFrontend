@@ -1,0 +1,29 @@
+div.modal-class{
+
+    .modal{
+      background-color: grey;
+      color: black;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 40%;
+      height: 110px;
+      width: 230px;
+      left:35px;
+      opacity:0.8;
+
+      text-align: center;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.1s, height 0.1s, opacity 0.1s, ease 0.5s;
+
+    }
+
+  .modal-active{
+  width: 0;
+  height: 0;
+  opacity: 0;
+  }
+
+}

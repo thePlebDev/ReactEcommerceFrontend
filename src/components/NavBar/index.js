@@ -5,6 +5,7 @@ import {Switch,Link} from 'react-router-dom';
 const NavBar = ({navLinks,icon})=>{
   const [hoverIndex,setHoverIndex] = useState(-1)
   const [navOpen,setNavOpen] = useState(false)
+  const [mouseState,setMouseState] = useState(false)
 
   return(
     <nav
@@ -13,6 +14,8 @@ const NavBar = ({navLinks,icon})=>{
       <ul
         style={{ background:'background'}}
         className={navOpen? 'active':''}
+        onMouseEnter={()=>console.log('mouse on')}
+        onMouseLeave={()=>console.log('mouse off')}
         >
         <figure onClick={()=>{setNavOpen(!navOpen)}}>
             <i className="fas fa-bars"></i>

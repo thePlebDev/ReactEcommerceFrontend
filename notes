@@ -171,3 +171,18 @@ with.
 - the last thing that we have to do is the transition. so to start we se the margin left to -230px so that it looks like
 its closed.
 - to create the transition on the ul we add a transition of 300ms ease all;
+---------------------------------------------------------------------------------------------------------------------------
+BUGS:
+ 1) the navigation is in a position absolute state and the other elements are not reconizing it, I bet its the fixed positioning.
+reason: its was do to the navigation being placed as fixed.
+solution: I just deleted it for now. not really that big of a problem.
+---------------------------------------------------------------------------------------------------------------------------
+
+
+CREATING THE CARDS:
+- I think that this is something that I can do so I will try to do it first.
+
+1) create the fake data that we are going to use to loop over, it will mimic data that has come from an api.
+
+2) create the mobile view. I did this and it was actually pretty easy, all of the inspiration from online eccommerce shops are
+pretty barebones for styling.

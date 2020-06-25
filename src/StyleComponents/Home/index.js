@@ -7,7 +7,7 @@ import {cardData} from '../../FakeApiData/index.js'
 const Home = ()=>{
 
   return(
-    <div >
+    <div class="wrapper" >
         <Card cardData={cardData} />
     </div>
   )

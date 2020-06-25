@@ -16,25 +16,17 @@ const App = ()=>{
       icon:"fas fa-home"
     },
     {
-      path:'/blog',
-      text:'Blog',
-      icon:'fas fa-blog'
-    },
-    {
       path:'/contact',
       text:'Contact',
       icon:'far fa-address-book'
     },
+
     {
-      path:'/portfolio',
-      text:'Portfolio',
-      icon:"fas fa-portrait"
-    },
-    {
-      path:'/about',
-      text:'About',
-      icon:"fas fa-address-card"
-    },
+      path:'/checkout',
+      text:'Checkout',
+      icon:"fas fa-shopping-cart"
+    }
+
   ]
 
 

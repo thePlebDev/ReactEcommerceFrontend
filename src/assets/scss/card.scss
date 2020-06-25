@@ -6,11 +6,10 @@ div.main-app-container{
 
 
 div.card-container{
-  z-index: -1;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
-  width:400px;
+  width:300px;
   box-shadow: 2px 2px 2px #ccc;
   position: relative;
 
@@ -25,10 +24,34 @@ div.card-container{
     align-items: center;
     height: 30px;
     width: 30px;
-
+    cursor: pointer;
     i{
       width: 50%;
       height: 50%;
+    }
+  }
+
+  .info-icon{
+    background-color: white;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    position: absolute;
+    color: grey;
+    bottom:32%;
+    left: 10px;
+    opacity: 0.5;
+    cursor: pointer;
+
+    i{
+      font-size: 15px;
+      width: 20%;
+      height: 50%;
+
     }
   }
 
@@ -43,13 +66,53 @@ div.card-container{
     text-align: center;
     background-color: rgb(99, 99, 206);
 
-
-
     div{
       font-family: 'Roboto';
       color: white;
       padding: 5px;
       letter-spacing: 2px;
     }
+    i{
+      cursor: pointer;
+    }
+
+  }
+
+
+  .review-info{
+    height: 100%;
+
+    font-family: 'Roboto';
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+
+}
+@media only screen and (max-width:600px){
+  div.below-wrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+
+  }
+}
+@media only screen and (min-width:768px){
+  div.below-wrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+  }
+}
+
+@media only screen and (min-width:992px){
+  div.below-wrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap:5px;
+
   }
 }
