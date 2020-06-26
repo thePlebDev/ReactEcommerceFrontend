@@ -186,3 +186,100 @@ CREATING THE CARDS:
 
 2) create the mobile view. I did this and it was actually pretty easy, all of the inspiration from online eccommerce shops are
 pretty barebones for styling.
+
+
+CREATING THE NEXT BREAK POINT:
+- the next break point is at 768px the only thing that I am concerned about is how do I create a media query that will allow me
+create the grid that I want. So I will have to do some google searches on how to create a responsive grid
+-flex is shorthand for flex-grow, flex-shirk and flex-basis combined
+- we just added a css grid and that made everything work ok, so thats bueno
+
+DETECTING THE CLICK OUTSIDE OF A BOX:
+- so this is what we have to do:
+1) create a reference to the outer div
+2) add event listener mousedown(or click) to the document whenever this component is appear on screen(mount) and remove
+it on the unmount too
+3)inside the event(handleClick) this.node.contains(e.target) will return true if whatever we are clicking is inside of
+the 'node' ref
+
+- so we need to create a reference to the outer div
+- refs are created with the React.createRef() and is attached to React elements via the ref attribute. Refs are
+commonly assigned to an instance property when a component is constructed so they can be referenced throughout
+the component
+- so we create the react ref with React.createRef() and assign it to a variable. then it is attached to
+React element via the ref attribute
+      myRef = React.createRef();
+          return <div ref={this.myRef} />
+
+- when a ref is rendered a reference to the node becomes accessible at the current attribute of the ref
+      const node = myRef.current
+
+- the value of ref changes depending on the node type
+- When the ref attribute is used on a custom class component, the ref object recieves the mounted instance of
+the component as its current
+
+- so when we use the React.createRef() on our custom component the ref object recieves the mounted instance of
+the component as its current
+- so the ref that we will create will reference the custom component, we can not use a ref attribute on function
+components
+- so I guess there is a useRef hook in React
+- it returns a mutable object whose .current property is initialized to the passed argument
+- the returned object will persist for the full lifetime of the component.
+
+    const refContainer = useRef(initialValue);
+
+- so the .current value on the ref(which is the reference to the node) is whatever is provided as the initial value
+- we creat the ref and then assign it to a react element and then once we have attached it to a element we are
+able to access the elements dom value throuhg the .current property on the ref
+- the useRef() hook isnt just for DOM refs. The "ref" object is a generic container whose current property is mutable
+and can hold any value, similar to an instance property on a class. But I do not think I will be using this
+- so we will create the ref on the navbar component and assign it to the ul element, then we will create a onlick
+listener to check if our click was on the ul or not, if it was then do nothing but if it wasnt then we should set the
+openNav to false
+- we are passing useRef null but I am not sure why. what even is null, its a primative that identifies as an object(error)
+- we accessing the dom node with the ref we go .current.focus()
+
+1) add the a event listener to the document. This is done through noraml javascript.
+    document.addEventListener('click', handleClick)
+
+  - this will add a event listener on the whole document. this means that anywhere that we click, the event is going
+  to fire
+  - when we pass null to the ref component we are initially setting it to null but when we assign it to the element it
+  will take on the value of that document
+  - the main magic of everything is this:
+
+          if(ref.current && !ref.current.contains(event.target))
+
+- so the ref.current is our ul element(what we put the ref on) the ref.current.contains(event.target) checks to
+see if the ref contains what we just clicked on. So the full thing is saying that if the current ref(the ul)
+and the ul does not contain the place we clicked, then we should do something
+
+so this is going to happen:
+1) we are going to create the ref and assign it to the element that we want to check against
+2)import useEffect hook and set it up
+3)inside of useEffect use document.addEventListener('click',handleClick),this will add an event listener to the
+whole document
+4) in the return value of useEffect put document.removeEventListener('click',handleClick), useEffect will run the
+function that is returned by it and it will be ran when it is time to clean up. React performs the cleanup when
+the component unmounts, React also cleans up effects from the previous render before running the effect next time
+5)add an empty dependency array, this tells React React that our effect doesnt depend on any values from props or state
+so it never needs to re-run. So I have messed something up somewhere.
+6) create the handleClick function
+            if(ref.current && !ref.current.contains(event.target)){console.log('not inside')}
+
+- so step one is definitely create the ref using useRef hook
+-so for some weird reason, my mouse event is being ran twice.
+-so I think it has to do with the fact that the HTML will automaticaly fire its own event, so we will fire once with
+our event and then fire again by itsself with nothing. so I need to protect against it
+- we can protect against the undefined value by using the && symbol.
+- so I kind of had to hack around it but for now it will work.
+
+
+
+EFFECTS WITH CLEANUP:
+-it is important to clean up so that we don't introduce a memory leak. a memory leak occurs when you change the state
+of an unmounted component.
+- but this means that if we using anything that wont be cleaned up, then we have to do it ourselfs.
+-document.eventlisteners need to be unmounted. unsubscribing from data subscriptions need to be instantiated and
+cancelling a timeout interval that is no longer needed. so basically anything that is outside of the standard
+react lifecycle, then we need to clean it up

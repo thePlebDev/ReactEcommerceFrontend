@@ -1,11 +1,32 @@
-import React,{ useState } from 'react';
+import React,{ useState,useRef,useEffect } from 'react';
 import {Switch,Link} from 'react-router-dom';
 
 
 const NavBar = ({navLinks,icon})=>{
   const [hoverIndex,setHoverIndex] = useState(-1)
   const [navOpen,setNavOpen] = useState(false)
-  const [mouseState,setMouseState] = useState(false)
+  const ulRef = useRef(null);
+
+  const handleClick =(e)=>{
+    if( !e || ulRef.current.contains(e.target)){
+      console.log('inside')
+    }else{
+      setNavOpen(false)
+    }
+
+  }
+
+
+  useEffect(()=>{
+    console.log('mounted')
+
+    document.addEventListener('mousedown',handleClick,true)
+    return()=>{
+      document.removeEventListener('mousedown',handleClick,true)
+
+    }
+  },[])
+
 
   return(
     <nav
@@ -14,9 +35,8 @@ const NavBar = ({navLinks,icon})=>{
       <ul
         style={{ background:'background'}}
         className={navOpen? 'active':''}
-        onMouseEnter={()=>console.log('mouse on')}
-        onMouseLeave={()=>console.log('mouse off')}
-        >
+        ref={ulRef}
+        onClick={()=>handleClick()}>
         <figure onClick={()=>{setNavOpen(!navOpen)}}>
             <i className="fas fa-bars"></i>
         </figure>
