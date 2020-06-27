@@ -283,3 +283,71 @@ of an unmounted component.
 -document.eventlisteners need to be unmounted. unsubscribing from data subscriptions need to be instantiated and
 cancelling a timeout interval that is no longer needed. so basically anything that is outside of the standard
 react lifecycle, then we need to clean it up
+
+
+CREATING THE CHECKOUT PAGE:
+-right now we are creating the banner for the checkout page, we want the words to fade in and out continously
+we are going to use setInterval
+
+    setInterval(func,[delay],[arg1],[arg2])
+
+- the func is a function or a string of code to be executed
+- the delay is the delay before the function runs
+- [arg1],[arg2] these arguments are arguments fof the function but I dont think we will need them
+
+- what do we want the funciton to do ? we want a function that will take in an array of keywords and they display
+them one after the other.
+- so we want the function to return one word, wait 2000ms and then return the next  untill there is no words in
+the list left
+
+- so have an outer function that takes the array.
+- maybe instead of trying to be cleaver I could see if react-transition-group has anything that could work for this
+
+REACT TRANSITION GROUP:
+- I think since we will be using css transitions that we should use the CSS transition. the CSS transition applies a
+pair of class names during the appear, enter and exit states of the transition
+
+- so we wrap what we want to animate with the CSSTransition component and set a in and timout state in the props of
+that component. Whatever is in the CSSTransition component will be the thing that is getting rendered but only when
+the in prop is set to true
+- the classes that we get are enter, enter-active, exit and exit-active
+
+- the active class represents which styles we want to animate to, so we should add transition declaration only to them
+otherwise transitions might not behave like we want them to
+
+- we should use the Transition component when we need to animate the mounting and unmounting of a component using styling
+in Javascript. If we want to use CSS styling(which we do) we should use the CSSTransition component.
+
+- ok well lets just give this stuff a try and see how it goes and then we can worry about how to get the rest working
+when we get there.
+
+- css applies a pair of class names during the appear,enter, and exit states of the transition. The first class
+is applied and then a second-active class in order to activate the CSS transition.
+- so when the in prop is set to true,the child component will recieve the class example-enter , then example-enter-active
+- so for use the first class that it will get is node-enter and then node-enter-active
+
+- CSSTransition applies a pair of class names during the appear, enter and exit states of the transition group.
+- so CSSTransition has 3 states, appear, enter and exit. the first class is applied and then the second which is
+the active one, so it goes; enter and then enter-active, then appear and the appear-active, finally we get exit and
+exit-active.
+-the active class represents which styles we want to animate, so we should add the transition delaration only to them
+- I think to make the transition work on page load, we have to wrap it inside of a Transition component
+
+TRANSITION:
+-transition is used to animate mounting and unmounting of a component
+- so now we have created a new new component for each piece of data and that means that we can use the transition
+component
+- so we will be able to animate the mounting and unmounting of our component
+- transition does not alter the behaviour of the component it renders, it just tracks the enter and the exit
+for the components, it is up to us to give the meaning and effect to those states. this means that
+we can add styles to a componnet when it enters or exist
+
+- there are 4 main states a transition can be in.
+1) entering
+2)entered
+3)exiting
+4)exited
+- the transition state is toggled via the in prop. When true the component begins the "enter" stage and then
+it changes state for a duration that we specify
+
+- the reason that none of my transitons have been working is because of the fact that I havent had a key

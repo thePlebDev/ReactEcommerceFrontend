@@ -2,14 +2,13 @@ import React from 'react';
 
 
 
-const Blog = ()=>{
+const Cart =()=>{
 
   return(
     <div>
-      <h1>BLOG</h1>
+
     </div>
   )
 }
 
-
-export default Blog;
+export default Cart;

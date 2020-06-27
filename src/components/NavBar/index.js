@@ -9,7 +9,6 @@ const NavBar = ({navLinks,icon})=>{
 
   const handleClick =(e)=>{
     if( !e || ulRef.current.contains(e.target)){
-      console.log('inside')
     }else{
       setNavOpen(false)
     }
@@ -18,8 +17,6 @@ const NavBar = ({navLinks,icon})=>{
 
 
   useEffect(()=>{
-    console.log('mounted')
-
     document.addEventListener('mousedown',handleClick,true)
     return()=>{
       document.removeEventListener('mousedown',handleClick,true)

@@ -2,11 +2,9 @@ import React from 'react';
 import { Switch,Route } from 'react-router-dom';
 
 import NavBar from '../NavBar';
-import About from '../../StyleComponents/About';
-import Blog from '../../StyleComponents/Blog';
 import Contact from '../../StyleComponents/Contact';
-import Portfolio from '../../StyleComponents/Portfolio';
 import Home from '../../StyleComponents/Home';
+import Cart from '../../StyleComponents/Cart';
 
 const App = ()=>{
   const navLinks = [
@@ -22,8 +20,8 @@ const App = ()=>{
     },
 
     {
-      path:'/checkout',
-      text:'Checkout',
+      path:'/cart',
+      text:'Cart',
       icon:"fas fa-shopping-cart"
     }
 
@@ -38,18 +36,13 @@ const App = ()=>{
             <Route exact path='/'>
               <Home />
             </Route>
-            <Route path='/about'>
-              <About />
-            </Route>
             <Route path='/contact'>
               <Contact />
             </Route>
-            <Route path='/blog'>
-              <Blog />
+            <Route path='/cart'>
+              <Cart />
             </Route>
-            <Route path='/portfolio'>
-              <Portfolio />
-            </Route>
+
           </Switch>
       </div>
 
